@@ -17,8 +17,8 @@ def send_heartbeat():
     try:
         # 使用你的 Render 應用實際的 URL
         response = requests.get('https://li-ou-xiao-gong-zhu-pai-cheng-shi-xiang.onrender.com/')
-        print(f"Heartbeat sent! Status Code: {response.status_code}")
-        st.write(f"Heartbeat sent! Status Code: {response.status_code}")
+        print(f"Heartbeat sent! Status Code: {response.status_code}, {t.datetime.now(taiwan_tz)}")
+        st.write(f"Heartbeat sent! Status Code: {response.status_code}, {t.datetime.now(taiwan_tz)}")
     except Exception as e:
         print(f"Error sending heartbeat: {e}")
 
@@ -26,6 +26,7 @@ def send_heartbeat():
 def test():
     message = f"test"
     print(message)
+    st.write(f"{message}, {t.datetime.now(taiwan_tz)}")
     send_line_notify(message, '6359', '11069871')
 
 
@@ -39,8 +40,8 @@ schedule.every().minute.at(":00").do(send_heartbeat)
 schedule.every().minute.at(":30").do(test) 
 schedule.every().minute.at(":30").do(send_heartbeat) 
 
-schedule.every().hour.at(":00").do(test)
-schedule.every().hour.at(":00").do(send_heartbeat)
+schedule.every().hour.at(":02").do(test)
+schedule.every().hour.at(":02").do(send_heartbeat)
 
 while True:
     schedule.run_pending()
