@@ -22,11 +22,6 @@ def send_line_notify(notification_message, stickerPackageId, stickerId):
 
 
 
-def test():
-    message = f"test"
-    print(message)
-    send_line_notify(message, '6359', '11069871')
-
 
 # 通知就寢
 def notice_sleep():

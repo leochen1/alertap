@@ -22,11 +22,19 @@ def send_heartbeat():
     except Exception as e:
         print(f"Error sending heartbeat: {e}")
 
+
+def test():
+    message = f"test"
+    print(message)
+    send_line_notify(message, '6359', '11069871')
+
+
 schedule.every().second.do(send_heartbeat)  # 每秒發送心跳
 schedule.every().wednesday.at("00:00").do(notice_cellphone_tax) # 每月第一個星期三 通知繳電話費
 schedule.every().day.at("23:00").do(notice_sleep)  # 每天 23:00 通知就寢
-schedule.every().day.at("23:55").do(test)  # 每天 23:00 通知就寢
-schedule.every().day.at("23:56").do(test)  # 每天 23:00 通知就寢
+schedule.every().day.at("00:05").do(test)  # 每天 23:00 通知就寢
+schedule.every().day.at("00:06").do(test)  # 每天 23:00 通知就寢
+
 
 while True:
     schedule.run_pending()
