@@ -6,7 +6,6 @@ import requests
 
 taiwan_tz = pytz.timezone("Asia/Taipei") #時區
 
-#test
 
 # 發送 Line Notify 通知
 def send_line_notify(notification_message):
