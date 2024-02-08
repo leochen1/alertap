@@ -19,7 +19,6 @@ def send_heartbeat():
         response = requests.get('https://li-ou-xiao-gong-zhu-pai-cheng-shi-xiang.onrender.com/')
         print(f"Heartbeat sent! Status Code: {response.status_code}")
         st.write(f"Heartbeat sent! Status Code: {response.status_code}")
-        send_line_notify("message", '6359', '11069871')
     except Exception as e:
         print(f"Error sending heartbeat: {e}")
 
@@ -33,7 +32,12 @@ def test():
 schedule.every().second.do(send_heartbeat)  # 每秒發送心跳
 schedule.every().wednesday.at("00:00").do(notice_cellphone_tax) # 每月第一個星期三 通知繳電話費
 schedule.every().day.at("23:00").do(notice_sleep)  # 每天 23:00 通知就寢
+
 schedule.every().minute.at(":00").do(test) 
+schedule.every().minute.at(":00").do(notice_sleep) 
+
+schedule.every().minute.at(":30").do(test) 
+schedule.every().minute.at(":30").do(notice_cellphone_tax) 
 
 while True:
     schedule.run_pending()
